@@ -29,28 +29,32 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Router
-var FindStudent = require('./router/FindStudent');
-var FindTutor = require('./router/FindTutor');
-var Logout = require('./router/Logout');
 var MainPage = require('./router/MainPage');
-var registerStudent = require('./router/registerStudent');
-var registerTutor = require('./router/registerTutor');
-var ShowStudent = require('./router/ShowStudent');
-var ShowTutor = require('./router/ShowTutor');
 var StudentLogin = require('./router/StudentLogin');
-var TutorLogin = require('./router/TutorLogin');
+// var TutorLogin = require('./router/TutorLogin');
+// var FindStudent = require('./router/FindStudent');
+// var FindTutor = require('./router/FindTutor');
+// var Logout = require('./router/Logout');
+// var registerStudent = require('./router/registerStudent');
+// var registerTutor = require('./router/registerTutor');
+// var ShowStudent = require('./router/ShowStudent');
+// var ShowTutor = require('./router/ShowTutor');
+
 
 
 app.use('/', MainPage);
-app.use('/FindStudent', FindStudent);
-app.use('/FindTutor', FindTutor);
-app.use('/Logout', Logout);
-app.use('/registerStudent', registerStudent);
-app.use('/registerTutor', registerTutor);
-app.use('/ShowStudent', ShowStudent);
-app.use('/ShowTutor', ShowTutor);
+app.use('/MainPage', MainPage);
 app.use('/StudentLogin', StudentLogin);
-app.use('/TutorLogin', TutorLogin);
+app.use('/StudentLoginProcess', StudentLogin);
+// app.use('/TutorLogin', TutorLogin);
+// app.use('/FindStudent', FindStudent);
+// app.use('/FindTutor', FindTutor);
+// app.use('/Logout', Logout);
+// app.use('/registerStudent', registerStudent);
+// app.use('/registerTutor', registerTutor);
+// app.use('/ShowStudent', ShowStudent);
+// app.use('/ShowTutor', ShowTutor);
+
 
 
 // server start
