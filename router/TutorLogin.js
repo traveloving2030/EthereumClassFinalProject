@@ -11,7 +11,7 @@ var contract = new web3.eth.Contract(ABI, CA);
 
 
 router.get('/', function (req, res, next) {
-    res.render('StudentLogin', { title: "StudentLogin" });
+    res.render('TutorLogin', { title: "TutorLogin" });
 });
 
 router.post('/', function (req, res) {
@@ -19,8 +19,8 @@ router.post('/', function (req, res) {
         web3.eth.getAccounts().then(function (accounts) {
         var i;
         for (i = 0; i < accounts.length; i++) {
-            if (req.body.stu_ethAccount == accounts[i]) {
-                res.render('StudentLoginProcess', { title: "login....", stu_ethAccount: req.body.stu_ethAccount });
+            if (req.body.tutor_ethAccount == accounts[i]) {
+                res.render('TutorLoginProcess', { title: "login....", tutor_ethAccount: req.body.tutor_ethAccount });
             }
         }
         try{

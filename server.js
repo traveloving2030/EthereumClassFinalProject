@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Router
 var MainPage = require('./router/MainPage');
 var StudentLogin = require('./router/StudentLogin');
-// var TutorLogin = require('./router/TutorLogin');
+var TutorLogin = require('./router/TutorLogin');
 // var FindStudent = require('./router/FindStudent');
 // var FindTutor = require('./router/FindTutor');
 // var Logout = require('./router/Logout');
@@ -46,7 +46,8 @@ app.use('/', MainPage);
 app.use('/MainPage', MainPage);
 app.use('/StudentLogin', StudentLogin);
 app.use('/StudentLoginProcess', StudentLogin);
-// app.use('/TutorLogin', TutorLogin);
+app.use('/TutorLogin', TutorLogin);
+app.use('/TutorLoginProcess', TutorLogin);
 // app.use('/FindStudent', FindStudent);
 // app.use('/FindTutor', FindTutor);
 // app.use('/Logout', Logout);
