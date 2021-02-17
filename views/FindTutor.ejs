@@ -1,0 +1,92 @@
+<html>
+
+<head>
+  <%- include('header/head') %>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">이더리움 과외매칭 플랫폼</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Student</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Tutor</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/LogOut">LogOut</a>
+          </li>
+          <li class="nav-item" style="color:white;" id="login_li">
+            <script>
+              let userData = {};
+              var login_li = document.getElementById("login_li");
+              try {
+                userData = { key: sessionStorage.getItem('account') };
+              } catch (e) {
+                location.href = "/";
+              }
+              login_li.innerHTML = "<a class=nav-link><strong>" + userData.key + "</strong> 님 안녕하세요!</a>";
+
+            </script>
+          </li>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+
+    <div class="login-section">
+      <div class="header">
+        <h1>선생님 찾기</h1>
+        <h2>원하는 선생님을 찾아보아요</h2>
+        <hr>
+      </div>
+
+      <form class="login-form" action="/ShowTutor" method="POST">
+        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+        
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+          <option selected>Open this select menu</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+        </select>
+      </form>
+
+    </div>
+
+
+  </div>
+  <!-- /.row -->
+
+
+
+
+
+
+
+</body>
+
+</html>

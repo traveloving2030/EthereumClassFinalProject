@@ -34,7 +34,7 @@ var StudentLogin = require('./router/StudentLogin');
 var TutorLogin = require('./router/TutorLogin');
 var Logout = require('./router/Logout');
 // var FindStudent = require('./router/FindStudent');
-// var FindTutor = require('./router/FindTutor');
+var FindTutor = require('./router/FindTutor');
 
 // var registerStudent = require('./router/registerStudent');
 // var registerTutor = require('./router/registerTutor');
@@ -51,7 +51,7 @@ app.use('/TutorLogin', TutorLogin);
 app.use('/TutorLoginProcess', TutorLogin);
 app.use('/Logout', Logout);
 // app.use('/FindStudent', FindStudent);
-// app.use('/FindTutor', FindTutor);
+app.use('/FindTutor', FindTutor);
 
 // app.use('/registerStudent', registerStudent);
 // app.use('/registerTutor', registerTutor);
