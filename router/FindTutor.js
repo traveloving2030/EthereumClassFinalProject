@@ -26,7 +26,9 @@ router.post('/', function (req, res) {
         total.push(tutorInfo);
     }
     total.map(tutors, function(){
-        if(tutors[1]==req.body.gender && )
+        if(tutors[1]==req.body.gender && tutors[4]==req.body.subject){
+            
+        }
     })
 
 });
