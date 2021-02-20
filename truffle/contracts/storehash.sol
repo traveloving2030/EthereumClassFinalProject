@@ -15,10 +15,13 @@ contract Contract {
     }
 
     address payable owner;
-
-    User[] public students;
-    User[] public tutors;
-
+    
+    mapping(address => User) internal studentInfo;
+    mapping(address => User) internal tutorInfo;
+    
+    User[] internal students;
+    User[] internal tutors;
+    
     uint numberOfStudents;
     uint numberOfTutors;
     
@@ -27,16 +30,48 @@ contract Contract {
     }
 
 
-    function registerStudent(string memory _name, string memory _gender, uint _age, string memory _residence, string memory _subject, string memory _resumeHash) public {
-      students.push(User(_name, _gender, _age, _residence, _subject, _resumeHash));
-      numberOfStudents++;
+    function registerStudent(string memory _name, string memory _gender, uint _age, string memory _residence, string memory _subject, string memory _resumeHash) internal {
+        studentInfo[msg.sender].name=_name;
+        studentInfo[msg.sender].gender=_gender;
+        studentInfo[msg.sender].age=_age;
+        studentInfo[msg.sender].residence=_residence;
+        studentInfo[msg.sender].subject=_subject;
+        studentInfo[msg.sender].resumeHash=_resumeHash;
+        students.push(User(_name, _gender, _age, _residence, _subject, _resumeHash));
+        numberOfStudents++;
+    }
+    
+    function StudentValidCheck(address myaddress) internal view returns(bool) {
+        require(bytes(studentInfo[myaddress].name).length != 0);
+        require(bytes(studentInfo[myaddress].gender).length != 0);
+        require(studentInfo[myaddress].age!=0);
+        require(bytes(studentInfo[myaddress].residence).length != 0);
+        require(bytes(studentInfo[myaddress].subject).length != 0);
+        require(bytes(studentInfo[myaddress].resumeHash).length == 46);
+        return true;
     }
 
-    function registerTutors(string memory _name, string memory _gender, uint _age, string memory _residence, string memory _subject, string memory _resumeHash) public {
-      tutors.push(User(_name, _gender, _age, _residence, _subject, _resumeHash)) ;
-      numberOfTutors++;
+    function registerTutors(string memory _name, string memory _gender, uint _age, string memory _residence, string memory _subject, string memory _resumeHash) internal {
+        tutorInfo[msg.sender].name=_name;
+        tutorInfo[msg.sender].gender=_gender;
+        tutorInfo[msg.sender].age=_age;
+        tutorInfo[msg.sender].residence=_residence;
+        tutorInfo[msg.sender].subject=_subject;
+        tutorInfo[msg.sender].resumeHash=_resumeHash;
+        tutors.push(User(_name, _gender, _age, _residence, _subject, _resumeHash)) ;
+        numberOfTutors++;
     }
 
+    function TutorValidCheck(address myaddress) internal view returns(bool) {
+        require(bytes(tutorInfo[myaddress].name).length != 0);
+        require(bytes(tutorInfo[myaddress].gender).length != 0);
+        require(tutorInfo[myaddress].age!=0);
+        require(bytes(tutorInfo[myaddress].residence).length != 0);
+        require(bytes(tutorInfo[myaddress].subject).length != 0);
+        require(bytes(tutorInfo[myaddress].resumeHash).length == 46);
+        return true;
+    }
+    
     function getNumOfStudents() public view returns(uint) {
         return numberOfStudents;
     }
@@ -44,23 +79,33 @@ contract Contract {
     function getNumOfTutors() public view returns(uint) {
         return numberOfTutors;
     }
+    
 
-    function getStudentInfo(uint _index) public view returns (string memory, string memory, uint , string memory, string memory, string memory) {
+    
+    function getStudentInfoByAddress(address myaddress) internal view returns (string memory, string memory, uint , string memory, string memory, string memory) {
+        return (studentInfo[myaddress].name, studentInfo[myaddress].gender, studentInfo[myaddress].age, studentInfo[myaddress].residence, studentInfo[myaddress].subject, studentInfo[myaddress].resumeHash);
+    }
+    
+    function getTutorInfoByAddress(address myaddress) internal view returns (string memory, string memory, uint , string memory, string memory, string memory) {
+        return (tutorInfo[myaddress].name, tutorInfo[myaddress].gender, tutorInfo[myaddress].age, tutorInfo[myaddress].residence, tutorInfo[myaddress].subject, tutorInfo[myaddress].resumeHash);
+    }
+    
+    function getStudentInfoByIndex(uint _index) internal view returns (string memory, string memory, uint , string memory, string memory, string memory) {
         return (students[_index].name, students[_index].gender, students[_index].age, students[_index].residence, students[_index].subject, students[_index].resumeHash);
     }
 
-    function getTutorInfo(uint _index) public view returns (string memory, string memory, uint , string memory, string memory, string memory) {
+    function getTutorInfoByIndex(uint _index) internal view returns (string memory, string memory, uint , string memory, string memory, string memory) {
         return (tutors[_index].name, tutors[_index].gender, tutors[_index].age, tutors[_index].residence, tutors[_index].subject, tutors[_index].resumeHash);
     }
 
-    function getStudentResume(string memory _hash) public payable {
-      require(bytes(_hash).length==46); //ipfs hash길이 46 확인
+    function getStudentResume() external payable {
+      TutorValidCheck(msg.sender);
       owner.transfer(msg.value);
  
     }
 
-    function getTutorResume(string memory _hash) public payable {
-      require(bytes(_hash).length==46); 
+    function getTutorResume() external payable {
+      StudentValidCheck(msg.sender);
       owner.transfer(msg.value);
      
     }

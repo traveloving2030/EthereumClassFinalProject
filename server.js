@@ -39,7 +39,7 @@ var FindTutor = require('./router/FindTutor');
 // var registerStudent = require('./router/registerStudent');
 // var registerTutor = require('./router/registerTutor');
 // var ShowStudent = require('./router/ShowStudent');
-// var ShowTutor = require('./router/ShowTutor');
+var ShowTutor = require('./router/ShowTutor');
 
 
 
@@ -56,7 +56,7 @@ app.use('/FindTutor', FindTutor);
 // app.use('/registerStudent', registerStudent);
 // app.use('/registerTutor', registerTutor);
 // app.use('/ShowStudent', ShowStudent);
-// app.use('/ShowTutor', ShowTutor);
+app.use('/ShowTutor', ShowTutor);
 
 
 
