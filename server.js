@@ -28,7 +28,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Router
+const apiRouter = require('./router/apiRouter')
+
+/* // Router
 var MainPage = require('./router/MainPage');
 var StudentLogin = require('./router/StudentLogin');
 var TutorLogin = require('./router/TutorLogin');
@@ -56,9 +58,9 @@ app.use('/FindTutor', FindTutor);
 // app.use('/registerStudent', registerStudent);
 // app.use('/registerTutor', registerTutor);
 // app.use('/ShowStudent', ShowStudent);
-app.use('/ShowTutor', ShowTutor);
+app.use('/ShowTutor', ShowTutor); */
 
-
+app.use('/', apiRouter)
 
 // server start
 app.listen(PORT, HOST);

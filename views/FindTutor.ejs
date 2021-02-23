@@ -17,13 +17,13 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/registerStudent">마이페이지</a>
+            <a class="nav-link" href="/MyPage">마이페이지</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/registerStudent">학생등록</a>
+            <a class="nav-link" href="/student/registerStudent">학생등록</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/registerTutor">선생님등록</a>
+            <a class="nav-link" href="/tutor/registerTutor">선생님등록</a>
           </li>
 
           <li class="nav-item">
@@ -44,10 +44,10 @@
             </script>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="/LogOut">로그아웃</a>
+                    <li class="nav-item">
+            <a class="nav-link" href="/login/LogOut">로그아웃</a>
           </li>
-
+       
       </div>
     </div>
   </nav>
@@ -63,7 +63,7 @@
         <hr>
       </div>
 
-      <form class="login-form" action="/ShowTutor" method="POST">
+      <form class="login-form" action="/student/ShowTutor" method="POST">
         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="subject">
           <option value="">과목선택</option>
           <option value="korean">언어</option>
@@ -78,7 +78,7 @@
         </select>
         <br><br>
 
-        <input class="btn btn-primary newitem-btn" type="submit" value="검색" onclick="passSession()">
+        <input class="btn btn-primary newitem-btn" type="submit" value="검색">
       </form>
 
     </div>
@@ -89,17 +89,15 @@
 
 </body>
 <script>
-  function passSession() {
     $.ajax({
       type: "POST",
-      url: "/getSession",
+      url: "/student/sessionInfo",
       data: {account:sessionStorage.getItem('account')},
       dataType: "json",
       error: function (result) {
-        alert("로그인 먼저하세요!");
+        alert(result);
       }
     })
-  }
 
 
 </script>
