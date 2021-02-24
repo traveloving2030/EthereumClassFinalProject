@@ -31,20 +31,20 @@
           <li class="nav-item" id="regStudent">
             <script>
               const regStudent = document.getElementById("regStudent");
-              if(userData.key!=null){
-                regStudent.innerHTML = "<a class=nav-link href='/student/registerStudent'>학생등록</a>";
+              if (userData.key != null) {
+                regStudent.innerHTML = "<a class=nav-link href='/user/registerStudent'>학생등록</a>";
               }
-              
+
             </script>
           </li>
 
           <li class="nav-item" id="regTutor">
             <script>
               const regTutor = document.getElementById("regTutor");
-              if(userData.key!=null){
-                regTutor.innerHTML = "<a class=nav-link href='/tutor/registerTutor'>선생님등록</a>";
+              if (userData.key != null) {
+                regTutor.innerHTML = "<a class=nav-link href='/user/registerTutor'>선생님등록</a>";
               }
-              
+
             </script>
           </li>
 
@@ -87,15 +87,15 @@
               var stloginCheck = document.getElementById("stloginCheck");
 
               if (userData.key == null) {
-               
+
                 stloginCheck.innerHTML = "<a href='login/StudentLogin' class='btn btn-primary'>학생 로그인</a>"
 
               } else {
-                stloginCheck.innerHTML = "<a href='student/FindTutor' class='btn btn-primary'>선생님 찾기</a>"
+                stloginCheck.innerHTML = "<a href='user/FindTutor' class='btn btn-primary'>선생님 찾기</a>"
 
               }
             </script>
-           
+
           </div>
         </div>
       </div>
@@ -107,11 +107,11 @@
             <script>
               var tuloginCheck = document.getElementById("tuloginCheck");
               if (userData.key == null) {
-               
+
                 tuloginCheck.innerHTML = "<a href='login/TutorLogin' class='btn btn-primary'>선생님 로그인</a>"
 
               } else {
-                tuloginCheck.innerHTML = "<a href='tutor/FindStudent' class='btn btn-primary'>학생 찾기</a>"
+                tuloginCheck.innerHTML = "<a href='user/FindStudent' class='btn btn-primary'>학생 찾기</a>"
 
               }
             </script>
@@ -137,5 +137,19 @@
 
 
 </body>
+<script>
+  if (userData.key != null) {
+    $.ajax({
+      type: "POST",
+      url: "/user/sessionInfo",
+      data: { sessionAccount: userData.key },
+      dataType: "json",
+      error: function (result) {
+        alert(result);
+      }
+    })
+  }
+
+</script>
 
 </html>

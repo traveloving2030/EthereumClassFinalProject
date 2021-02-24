@@ -25,6 +25,8 @@ router.route('/StudentLogin/loginProcess')
         })
     })
 
+
+
 router.route('/TutorLogin')
     .get(async (req, res) => {
         res.render('TutorLogin', { title: "TutorLogin" });
@@ -51,6 +53,8 @@ router.route('/logout')
     .get(async (req, res) => {
         res.render('LogOut', { title: "logout..." });
     })
+
+
 
 module.exports = router;
 

@@ -33,7 +33,7 @@
             <script>
               const regStudent = document.getElementById("regStudent");
               if(userData.key!=null){
-                regStudent.innerHTML = "<a class=nav-link href='/student/registerStudent'>학생등록</a>";
+                regStudent.innerHTML = "<a class=nav-link href='/user/registerStudent'>학생등록</a>";
               }
               
             </script>
@@ -43,7 +43,7 @@
             <script>
               const regTutor = document.getElementById("regTutor");
               if(userData.key!=null){
-                regTutor.innerHTML = "<a class=nav-link href='/tutor/registerTutor'>선생님등록</a>";
+                regTutor.innerHTML = "<a class=nav-link href='/user/registerTutor'>선생님등록</a>";
               }
               
             </script>
@@ -79,7 +79,7 @@
         <hr>
       </div>
 
-      <form class="login-form" action="/student/ShowTutor" method="POST">
+      <form class="login-form" action="/user/ShowTutor" method="POST">
         <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="subject">
           <option value="">과목선택</option>
           <option value="korean">언어</option>

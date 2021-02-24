@@ -32,7 +32,7 @@
             <script>
               const regStudent = document.getElementById("regStudent");
               if(userData.key!=null){
-                regStudent.innerHTML = "<a class=nav-link href='/student/registerStudent'>학생등록</a>";
+                regStudent.innerHTML = "<a class=nav-link href='/user/registerStudent'>학생등록</a>";
               }
               
             </script>
@@ -42,7 +42,7 @@
             <script>
               const regTutor = document.getElementById("regTutor");
               if(userData.key!=null){
-                regTutor.innerHTML = "<a class=nav-link href='/tutor/registerTutor'>선생님등록</a>";
+                regTutor.innerHTML = "<a class=nav-link href='/user/registerTutor'>선생님등록</a>";
               }
               
             </script>
@@ -82,7 +82,7 @@
                 <hr>
             </div>
           
-            <form class="login-form" action="/student/registerStudent" method="POST" enctype='multipart/form-data'>
+            <form class="login-form" action="/user/registerStudent" method="POST" enctype='multipart/form-data'>
                 <input class="newitem-form" type="text" name="name" placeholder="이름을 입력하세요">  <br>
 
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="gender">
