@@ -2,9 +2,9 @@ const ipfsAPI = require('ipfs-api')
 const fs =require('fs')
 
 const ipfs = ipfsAPI({
-	host: '127.0.0.1',
+	host: 'ipfs.infura.io',
 	port: 5001,
-	protocol: 'http'
+	protocol: 'https'
 });
 
 const ipfs_method = {

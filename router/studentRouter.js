@@ -1,9 +1,10 @@
 const router = require('express').Router()
-var Web3 = require('web3');
-var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
+const path=require('path');
+const ipfs = require('../ipfs/ipfs')
 const EthereumTx = require('./API/ContractAPI')
-var multer = require('multer'); // express에 multer모듈 적용 (for 파일업로드)
-var upload = multer({ dest: 'uploads/' })
+const multer=require('multer')
+const upload=multer({dest:'uploads/'});
+
 
 router.route('/FindTutor')
     .get(async (req, res) => {
@@ -48,9 +49,29 @@ router.route('/registerStudent')
         res.render('registerStudent', { title: "registerStudent" });
     })
 
-router.route('/registerStudent', upload.single('resumeHash'))
-    .post(async (req, res) => {
-        console.log(req.files);
+    
+router.post('/registerStudent', upload.single('resumeHash'), async function (req, res, next) {
+         const newpath=path.join(__dirname, '../', req.file.path) //multer 모듈에 저장되는 path 싱크
+
+         const ipfsHash = await ipfs.add({
+            path : newpath
+        })
+        
+        let request = {
+            name: req.body.name,
+            gender: req.body.gender,
+            age: req.body.age,
+            residence: req.body.residence,
+            subject: req.body.subject,
+            resumeHash: ipfsHash
+        }
+
+        const result = await EthereumTx.registerStudent(request)
+        if(result){
+             res.send('<script type="text/javascript">alert("학생이 등록되었습니다!!");</script>');
+        }else{
+            res.send('<script type="text/javascript">alert("학생등록 오류입니다!!");</script>');
+        }
     })
 
 
