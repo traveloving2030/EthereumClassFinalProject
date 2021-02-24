@@ -5,19 +5,20 @@ const EthereumTx = require('./API/ContractAPI')
 const multer=require('multer')
 const upload=multer({dest:'uploads/'});
 
+const account;
+
+router.route('/seesionInfo')
+    .post(async (req, res) => {
+        account=req.body.sessionAccount
+        console.log(account)
+    })
 
 router.route('/FindTutor')
     .get(async (req, res) => {
         res.render('FindTutor', { title: "FindTutor" });
     })
 
-
-router.route('/sessionInfo')
-    .post(async (req, res) => {
-        var test=req.body.account;
-        console.log("hi",test);
-    })
-
+    
 router.route('/ShowTutor')
     .get(async (req, res) => {
         res.render('ShowTutor', { title: "ShowTutor" });
@@ -56,8 +57,10 @@ router.post('/registerStudent', upload.single('resumeHash'), async function (req
          const ipfsHash = await ipfs.add({
             path : newpath
         })
-        
+        console.log("session테스트",account)
+
         let request = {
+            account: account,
             name: req.body.name,
             gender: req.body.gender,
             age: req.body.age,

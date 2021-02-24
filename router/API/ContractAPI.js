@@ -1,8 +1,7 @@
 var Web3 = require('web3');
-const ABI = require('../../truffle/build/contracts/Contract').abi;
-const CA = "0x8cE3f37C1BD93189c85DB56D2c9ef98f22b4cD08"
+var matchingContract = require('../../contract/contract.js');
 var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
-var contract = new web3.eth.Contract(ABI, CA);
+var contract = new web3.eth.Contract(matchingContract.abi, matchingContract.address);
 
 
 const ethereumTx = {
@@ -11,7 +10,8 @@ const ethereumTx = {
         try {
             const accounts=await web3.eth.getAccounts() //ajax 통신 바꾸기
             await contract.methods.registerStudent(request.name, request.gender, request.age, request.residence, request.subject, request.resumeHash).send({
-                from: accounts[0] //ajax 통신 바꾸기
+                from: accounts[0], //ajax 통신 바꾸기
+                gas: 4000000
             })
     
             return true
