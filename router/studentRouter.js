@@ -2,7 +2,8 @@ const router = require('express').Router()
 var Web3 = require('web3');
 var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
 const EthereumTx = require('./API/ContractAPI')
-
+var multer = require('multer'); // express에 multer모듈 적용 (for 파일업로드)
+var upload = multer({ dest: 'uploads/' })
 
 router.route('/FindTutor')
     .get(async (req, res) => {
@@ -47,7 +48,10 @@ router.route('/registerStudent')
         res.render('registerStudent', { title: "registerStudent" });
     })
 
-
+router.route('/registerStudent', upload.single('resumeHash'))
+    .post(async (req, res) => {
+        console.log(req.files);
+    })
 
 
 
