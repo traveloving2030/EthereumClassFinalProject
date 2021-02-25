@@ -142,10 +142,7 @@
     $.ajax({
       type: "POST",
       url: "/user/sessionInfo",
-      data: { sessionAccount: userData.key },
-      error: function (result) {
-        alert(result);
-      }
+      data: { sessionAccount: userData.key }
     })
   }
 

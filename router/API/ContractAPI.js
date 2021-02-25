@@ -6,11 +6,27 @@ var contract = new web3.eth.Contract(matchingContract.abi, matchingContract.addr
 
 const ethereumTx = {
 
+    getAccounts : async() => {
+        try {
+            const result = await web3.eth.getAccounts()
+
+            return result
+
+        } catch(error) {
+            console.log(error)
+
+            return {
+                result : false,
+                error : error
+            }
+        }
+    },
+
     registerStudent : async(request) => {
         try {
             const account=request.account.replace(/\"/g,'');
             await contract.methods.registerStudent(request.name, request.gender, request.age, request.residence, request.subject, request.resumeHash).send({
-                from: web3.utils.toChecksumAddress(account), //ajax 통신 바꾸기
+                from: web3.utils.toChecksumAddress(account),
                 gas: 4000000
             })
     
@@ -41,11 +57,10 @@ const ethereumTx = {
 
     registerTutor : async(request) => {
         try {
-            const accounts=await web3.eth.getAccounts()
-            await contract.methods.registerTutor(request.name, request.gender, request.age, request.residence, request.subject, request.resumeHash).send({
-                from: accounts[1], //ajax 통신 바꾸기
-                gas: 2000000,
-                gasPrice:"300000"
+            const account=request.account.replace(/\"/g,'');
+            await contract.methods.registerTutors(request.name, request.gender, request.age, request.residence, request.subject, request.resumeHash).send({
+                from: web3.utils.toChecksumAddress(account), 
+                gas: 4000000
             })
     
             return true
@@ -187,11 +202,12 @@ const ethereumTx = {
         }
     },
 
-    getTutorResume : async() => {
+    getTutorResume : async(request) => {
         try {
-            const accounts=await web3.eth.getAccounts() //ajax 통신 바꾸기
-            await contract.methods.getTutorResume().send({
-                from: accounts[0], //ajax 통신 바꾸기
+            const account=request.account.replace(/\"/g,'');
+            await contract.methods.getTutorResume(request.resumeHash).send({
+                from: web3.utils.toChecksumAddress(account),
+                gas: 4000000,
                 value: web3.utils.toWei('5', "ether"),
             })
     
