@@ -2,18 +2,12 @@
 
 //access our local copy to contract deployed on rinkeby testnet
 //use your own contract address
-const address = '0x10413c1a76e22a231CfE929e2a7828d8D6A2715F';
+const address = '0x89812097Bd94075738fFA8D56F74f65F6c436F7f';
 //use the ABI from your contract
 const abi = [
 	{
 		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_hash",
-				"type": "string"
-			}
-		],
+		"inputs": [],
 		"name": "getStudentResume",
 		"outputs": [],
 		"payable": true,
@@ -22,13 +16,7 @@ const abi = [
 	},
 	{
 		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_hash",
-				"type": "string"
-			}
-		],
+		"inputs": [],
 		"name": "getTutorResume",
 		"outputs": [],
 		"payable": true,
@@ -329,6 +317,48 @@ const abi = [
 				"internalType": "string",
 				"name": "",
 				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "myaddress",
+				"type": "address"
+			}
+		],
+		"name": "StudentValidCheck",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "myaddress",
+				"type": "address"
+			}
+		],
+		"name": "TutorValidCheck",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
 			}
 		],
 		"payable": false,

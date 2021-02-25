@@ -205,7 +205,7 @@ const ethereumTx = {
     getTutorResume : async(request) => {
         try {
             const account=request.account.replace(/\"/g,'');
-            await contract.methods.getTutorResume(request.resumeHash).send({
+            await contract.methods.getTutorResume().send({
                 from: web3.utils.toChecksumAddress(account),
                 gas: 4000000,
                 value: web3.utils.toWei('5', "ether"),

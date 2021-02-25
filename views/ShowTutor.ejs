@@ -25,14 +25,14 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/MyPage">마이페이지</a>
+            <a class="nav-link" href="/user/MyPage">마이페이지</a>
           </li>
 
           <li class="nav-item" id="regStudent">
             <script>
               const regStudent = document.getElementById("regStudent");
               if(userData.key!=null){
-                regStudent.innerHTML = "<a class=nav-link href='/student/registerStudent'>학생등록</a>";
+                regStudent.innerHTML = "<a class=nav-link href='/user/registerStudent'>학생등록</a>";
               }
               
             </script>
@@ -42,7 +42,7 @@
             <script>
               const regTutor = document.getElementById("regTutor");
               if(userData.key!=null){
-                regTutor.innerHTML = "<a class=nav-link href='/tutor/registerTutor'>선생님등록</a>";
+                regTutor.innerHTML = "<a class=nav-link href='/user/registerTutor'>선생님등록</a>";
               }
               
             </script>
@@ -66,7 +66,7 @@
       </div>
     </div>
   </nav>
-  
+
   <!-- Page Content -->
   <div class="container">
 
@@ -78,22 +78,30 @@
 
     <!-- Page Features -->
     <div class="row text-center">
-      <% if (selectedTutors !== null){selectedTutors.forEach((selectedTutors, index)=>{  %>
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-          <div class="card-body">
-            <h4 class="card-title">이름 : <%= selectedTutors[0] %></h4> <hr>
-            <p class="card-title">성별 : <%= selectedTutors[1] %></p> <hr>
-            <p class="card-title">나이 : <%= selectedTutors[2] %></p> <hr>
-            <p class="card-title">거주지 : <%= selectedTutors[3] %></p> <hr>
-          </div>
-          <div class="card-footer">
-            <button class="btn btn-primary" onclick="getResume('<%= selectedTutors[5] %>')">이력서 다운로드</button>
+      <% if (selectedTutors !==null){selectedTutors.forEach((selectedTutors, index)=>{ %>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card h-100">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title">이름 : <%= selectedTutors[0] %>
+              </h4>
+              <hr>
+              <p class="card-title">성별 : <%= selectedTutors[1] %>
+              </p>
+              <hr>
+              <p class="card-title">나이 : <%= selectedTutors[2] %>
+              </p>
+              <hr>
+              <p class="card-title">거주지 : <%= selectedTutors[3] %>
+              </p>
+              <hr>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-primary" onclick="getResume('<%= selectedTutors[5] %>')">이력서 다운로드</button>
+            </div>
           </div>
         </div>
-      </div>
-      <%  })} %>
+        <% })} %>
     </div>
     <!-- /.row -->
 
@@ -112,12 +120,16 @@
 
 </body>
 <script>
-  function getResume(hash){
+  function getResume(hash) {
     $.ajax({
       type: "POST",
       url: "/user/getTutorResume",
-      data: {resumeHash : hash }
+      success: function (result) {
+        alert("선생님 이력서 다운중...")
+        location.href = "http://gateway.ipfs.io/ipfs/"+hash 
+      }
     })
   }
 </script>
+
 </html>
