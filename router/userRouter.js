@@ -102,7 +102,6 @@ router.post('/registerStudent', upload.single('resumeHash'), async function (req
 router.route('/getTutorResume')
     .post(async (req, res) => {
         const resumeHash=req.body.resumeHash
-        const url="http://gateway.ipfs.io/ipfs/"+resumeHash
         console.log(typeof(url))
         let request = {
             resumeHash: req.body.resumeHash,
@@ -110,7 +109,7 @@ router.route('/getTutorResume')
         }
         const result = await EthereumTx.getTutorResume(request)
         if (result) {
-            res.send(`<script type="text/javascript">alert("이력서를 다운로드 합니다"); window.location.href = "${url}" ;</script>`);
+            res.send(`<script type="text/javascript">alert("이력서를 다운로드 합니다"); window.location.href = "http://gateway.ipfs.io/ipfs/${resumeHash}" ;</script>`);
         } else {
             res.send('<script type="text/javascript">alert("이력서 다운 오류"); window.location.href = "/user/ShowTutor";</script>');
         }
