@@ -8,9 +8,9 @@ const ethereumTx = {
 
     registerStudent : async(request) => {
         try {
-            const accounts=await web3.eth.getAccounts() //ajax 통신 바꾸기
+            const account=request.account.replace(/\"/g,'');
             await contract.methods.registerStudent(request.name, request.gender, request.age, request.residence, request.subject, request.resumeHash).send({
-                from: accounts[0], //ajax 통신 바꾸기
+                from: web3.utils.toChecksumAddress(account), //ajax 통신 바꾸기
                 gas: 4000000
             })
     
@@ -107,7 +107,8 @@ const ethereumTx = {
 
     getStudentInfoByAddress : async(request) => {
         try {
-            const result = await contract.methods.getStudentInfoByAddress(request.myaddress).call()
+            const account=request.account.replace(/\"/g,'');
+            const result = await contract.methods.getStudentInfoByAddress(web3.utils.toChecksumAddress(account)).call()
 
             return result
 

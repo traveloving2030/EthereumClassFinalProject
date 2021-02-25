@@ -20,7 +20,7 @@ router.route('/sessionInfo')
 router.route('/MyPage')
     .get(async (req, res) => {
       let request = {
-      myaddress: sessionAccount,
+      account: sessionAccount,
     }
       const result = await EthereumTx.getStudentInfoByAddress(request);
 
