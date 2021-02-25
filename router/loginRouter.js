@@ -18,7 +18,7 @@ router.route('/StudentLogin/loginProcess')
                 }
             }
             try{
-                res.send('<script type="text/javascript">alert("로그인 실패. 이더리움 주소를 확인하세요!!");</script>');
+                res.send('<script type="text/javascript">alert("로그인 실패. 이더리움 주소를 확인하세요!!"); window.location.href = "/login/StudentLogin";</script>');
             }catch(e){
                 console.log(e)
             }
@@ -42,7 +42,7 @@ router.route('/TutorLogin/loginProcess')
                 }
             }
             try{
-                res.send('<script type="text/javascript">alert("로그인 실패. 이더리움 주소를 확인하세요!!");</script>');
+                res.send('<script type="text/javascript">alert("로그인 실패. 이더리움 주소를 확인하세요!!"); window.location.href = "/login/TutorLogin"; </script>');
             }catch(e){
                 console.log(e)
             }

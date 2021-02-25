@@ -16,6 +16,16 @@ router.route('/sessionInfo')
         console.log("sessionInfo : ",sessionAccount)
     })
 
+//마이페이지 꾸미기
+router.route('/MyPage')
+    .get(async (req, res) => {
+      let request = {
+      myaddress: sessionAccount,
+    }
+      const result = await EthereumTx.getStudentInfoByAddress(request);
+
+      res.render('MyPage', { title: 'MyPage', studentInfo: result});
+})
 
 ////////////////////////////////////////////////////////////////////
 //////////////////// 학생용 //////////////////////////////////////

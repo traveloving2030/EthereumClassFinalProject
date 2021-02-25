@@ -1,0 +1,108 @@
+<html>
+
+<head>
+    <%- include('header/head') %>
+</head>
+
+<body>
+    <script>
+        let userData = {};
+        try {
+            userData = { key: sessionStorage.getItem('account') };
+        } catch (e) {
+            location.href = "/";
+        }
+    </script>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">이더 과외매칭</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="user/MyPage">마이페이지</a>
+                    </li>
+
+                    <li class="nav-item" id="regStudent">
+                        <script>
+                            const regStudent = document.getElementById("regStudent");
+                            if (userData.key != null) {
+                                regStudent.innerHTML = "<a class=nav-link href='/user/registerStudent'>학생등록</a>";
+                            }
+
+                        </script>
+                    </li>
+
+                    <li class="nav-item" id="regTutor">
+                        <script>
+                            const regTutor = document.getElementById("regTutor");
+                            if (userData.key != null) {
+                                regTutor.innerHTML = "<a class=nav-link href='/user/registerTutor'>선생님등록</a>";
+                            }
+
+                        </script>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Chatting">채팅상담</a>
+                    </li>
+
+                    <li class="nav-item" style="color:white;" id="login_li">
+                        <script>
+                            const login_li = document.getElementById("login_li");
+                            login_li.innerHTML = "<a class=nav-link><strong>" + userData.key + "</strong> 님 안녕하세요!</a>";
+                        </script>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login/LogOut">로그아웃</a>
+                    </li>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <header class="jumbotron my-4">
+            <h1 class="display-3">나의 정보 확인</h1>
+            <p class="lead">내 정보가 보이지 않는 경우, 상단바의 학생등록을 먼저 해주세요. </p>
+        </header>
+        <div class="align-center">
+            <div class="show-section">
+                <div class="item-comment"> 이름 : <%=studentInfo[0]%>
+                </div>
+                <hr>
+                <div class="item-comment"> 성별 : <%=studentInfo[1]%>
+                </div>
+                <hr>
+                <div class="item-comment"> 나이 : <%=studentInfo[2]%>
+                </div>
+                <hr>
+                <div class="item-comment"> 지역 : <%=studentInfo[3]%>
+                </div>
+                <hr>
+                <div class="item-comment"> 과목 : <%=studentInfo[4]%>
+                </div>
+           
+                
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Korea AeroSpace Univ. NSLab 2021</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+
+
+</body>
+
+
+</html>
