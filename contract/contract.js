@@ -2,112 +2,56 @@
 
 //access our local copy to contract deployed on rinkeby testnet
 //use your own contract address
-const address = '0x89812097Bd94075738fFA8D56F74f65F6c436F7f';
+const address = '0xdbd9f10055d0285319B8D325F48a1F65FDC4C09d';
 //use the ABI from your contract
 const abi = [
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "getStudentResume",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "getTutorResume",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_gender",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_age",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "_residence",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_subject",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_resumeHash",
-				"type": "string"
-			}
-		],
-		"name": "registerStudent",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_gender",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_age",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "_residence",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_subject",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_resumeHash",
-				"type": "string"
-			}
-		],
-		"name": "registerTutors",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
 	{
 		"inputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
 		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "myaddress",
+				"type": "address"
+			}
+		],
+		"name": "StudentValidCheck",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "myaddress",
+				"type": "address"
+			}
+		],
+		"name": "TutorValidCheck",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	},
 	{
 		"constant": true,
@@ -232,6 +176,15 @@ const abi = [
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [],
+		"name": "getStudentResume",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [
 			{
@@ -324,45 +277,92 @@ const abi = [
 		"type": "function"
 	},
 	{
-		"constant": true,
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "myaddress",
-				"type": "address"
-			}
-		],
-		"name": "StudentValidCheck",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
+		"constant": false,
+		"inputs": [],
+		"name": "getTutorResume",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
-		"constant": true,
+		"constant": false,
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "myaddress",
-				"type": "address"
-			}
-		],
-		"name": "TutorValidCheck",
-		"outputs": [
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
 			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
+				"internalType": "string",
+				"name": "_gender",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_age",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_residence",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_subject",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_resumeHash",
+				"type": "string"
 			}
 		],
+		"name": "registerStudent",
+		"outputs": [],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_gender",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_age",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_residence",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_subject",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_resumeHash",
+				"type": "string"
+			}
+		],
+		"name": "registerTutors",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ];

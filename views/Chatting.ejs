@@ -1,0 +1,99 @@
+<html>
+
+<head>
+  <%- include('header/head') %>
+</head>
+
+<body>
+  <script>
+    let userData = {};
+    try {
+      userData = { key: sessionStorage.getItem('account') };
+    } catch (e) {
+      location.href = "/";
+    }
+  </script>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">이더 과외매칭</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/user/MyPage">마이페이지</a>
+          </li>
+
+          <li class="nav-item" id="regStudent">
+            <script>
+              const regStudent = document.getElementById("regStudent");
+              if (userData.key != null) {
+                regStudent.innerHTML = "<a class=nav-link href='/user/registerStudent'>학생등록</a>";
+              }
+
+            </script>
+          </li>
+
+          <li class="nav-item" id="regTutor">
+            <script>
+              const regTutor = document.getElementById("regTutor");
+              if (userData.key != null) {
+                regTutor.innerHTML = "<a class=nav-link href='/user/registerTutor'>선생님등록</a>";
+              }
+
+            </script>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/Chatting">채팅상담</a>
+          </li>
+
+          <li class="nav-item" style="color:white;" id="login_li">
+            <script>
+              const login_li = document.getElementById("login_li");
+              login_li.innerHTML = "<a class=nav-link><strong>" + userData.key + "</strong> 님 안녕하세요!</a>";
+            </script>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/login/LogOut">로그아웃</a>
+          </li>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      <h1 class="display-3">선생님과 자유롭게 채팅해보세요</h1>
+      <p class="lead">채팅은 Whisper 프로토콜 기반으로 이루어집니다 </p>
+    </header>
+
+
+    <form class="login-form" action="/sender" method="POST">
+        <input class="newitem-form" type="text" name="sendermsg" placeholder="보낼 메세지를 입력하세요">  <br>
+        <input class="btn btn-primary newitem-btn" type="submit">
+    </form>
+
+    <form class="login-form" action="/receiver" method="POST">
+        <input class="newitem-form" type="text" name="receivermsg" placeholder="보낼 메세지를 입력하세요">  <br>
+        <input class="btn btn-primary newitem-btn" type="submit">
+    </form>
+
+  </div>
+  <!-- /.container -->
+
+
+
+
+
+</body>
+
+</html>
