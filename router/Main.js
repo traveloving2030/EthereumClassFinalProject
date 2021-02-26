@@ -1,6 +1,20 @@
 const router = require('express').Router()
 const EthereumTx = require('./API/ContractAPI')
 const WhisperAPI = require('./API/WhisperAPI')
+var Web3 = require('web3');
+
+const asymKeyId = await web3.shh.newKeyPair();
+const asymPubKey = await web3.shh.getPublicKey(asymKeyId);
+
+let filter = {
+    topics: ['0x07678231'],
+    privateKeyID=asymKeyId
+};
+
+const msgFilter=await web3.shh.newMessageFilter(filter);
+
+
+let msgs=new Array();
 
 router.route('/')
     .get(async (req, res) => {
