@@ -3,6 +3,7 @@ const EthereumTx = require('./API/ContractAPI')
 const WhisperAPI = require('./API/WhisperAPI')
 var Web3 = require('web3');
 
+
 const asymKeyId = await web3.shh.newKeyPair();
 const asymPubKey = await web3.shh.getPublicKey(asymKeyId);
 
@@ -13,8 +14,11 @@ let filter = {
 
 const msgFilter=await web3.shh.newMessageFilter(filter);
 
-
 let msgs=new Array();
+
+
+
+
 
 router.route('/')
     .get(async (req, res) => {
@@ -34,11 +38,18 @@ router.route('/sender')
 
 
         let request = {
-            sendermsg: req.body.sendermsg
-
+            sendermsg: req.body.sendermsg,
+            asymKeyId: asymKeyId,
+            recipientPubKey: asymPubKey,
+            msgFilter: msgFilter
         }
-        const result = await WhisperAPI.WhisperChatSender(request)
-        console.log("msg : ",result)
+        const result = await WhisperAPI.SendMessage(request)
+        console.log("SendMessageMethod Result : ",result)
+        
+        setInterval(() => {
+            var logs=await WhisperAPI.readMessage(request)
+            console.log(logs)
+        }, 1000);
         // res.render('Chatting', { title: 'Chatting'})
     })
 module.exports = router;

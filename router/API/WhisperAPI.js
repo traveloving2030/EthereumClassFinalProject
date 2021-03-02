@@ -1,3 +1,4 @@
+const { request } = require('express');
 var Web3 = require('web3');
 var web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 
@@ -32,7 +33,7 @@ const WhisperAPI = {
 
 
         //이건.. 계속 메세지 받아서 뿌려주는거니까 router단에서 해줘야할거 같은데
-        setInterval(() => {
+/*         setInterval(() => {
             web3.shh.getFilterMessages(msgFilter).then(messages => {
                 for (let element of messages) {
                     let Hexmessage = await web3.utils.fromAscii(element.payload);
@@ -40,7 +41,7 @@ const WhisperAPI = {
                     msgs.push(message);
                 }
             });
-        }, 1000);
+        }, 1000); */
 
 
 
@@ -78,6 +79,17 @@ const WhisperAPI = {
             console.log(error)
         }
 
+
+    },
+
+    readMessage: async (request) => {
+        let logs = await web3.shh.getFilterMessages(request.msgFilter);
+/*         for (let element of logs) {
+            let Hexmessage = await web3.utils.fromAscii(element.payload);
+            let message = await web3.utils.toUtf8(Hexmessage)
+            msgs.push(message);
+        } */
+        return logs
 
     },
 
