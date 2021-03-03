@@ -3,7 +3,7 @@ const EthereumTx = require('./API/ContractAPI')
 const WhisperAPI = require('./API/WhisperAPI')
 var Web3 = require('web3');
 
-
+const keys=await WhisperAPI.generateKey()
 
 
 let msgs=new Array();
@@ -31,9 +31,9 @@ router.route('/sender')
 
         let request = {
             sendermsg: req.body.sendermsg,
-            asymKeyId: asymKeyId,
-            recipientPubKey: asymPubKey,
-            msgFilter: msgFilter
+            asymKeyId: keys.asymKeyId,
+            recipientPubKey: keys.asymPubKey,
+            msgFilter: keys.msgFilter
         }
         const result = await WhisperAPI.SendMessage(request)
         console.log("SendMessageMethod Result : ",result)

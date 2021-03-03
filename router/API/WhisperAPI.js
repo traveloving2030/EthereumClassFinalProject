@@ -48,7 +48,7 @@ const WhisperAPI = {
 
     }, */
 
-    generateKey: async (request) => {
+    generateKey: async () => {
         try{
             const asymKeyId = await web3.shh.newKeyPair();
             const asymPubKey = await web3.shh.getPublicKey(asymKeyId);
