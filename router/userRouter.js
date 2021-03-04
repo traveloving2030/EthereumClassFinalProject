@@ -145,7 +145,7 @@ router.route('/ShowStudent/selected')
         }
         const selectedStudents = await getUser.getSelectedStudentsArray(request)
 
-        res.render('ShowTutor', { title: 'ShowTutor' ,selectedStudents: selectedStudents})
+        res.render('ShowStudent', { title: 'ShowStudent' ,selectedStudents: selectedStudents})
     })
 
 router.route('/registerTutor')
