@@ -31,8 +31,6 @@ router.route('/ChattingForm')
     .post(async (req, res) => {
         var time=new Date();
         const keys = await WhisperAPI.generateKey()
-        console.log(req.body.sendermsg);
-        console.log(req.body.adminmsg.length);
         let request = {
             sendermsg: req.body.sendermsg,
             adminmsg: req.body.adminmsg,

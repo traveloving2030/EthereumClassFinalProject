@@ -1,0 +1,135 @@
+<html>
+
+<head>
+  <%- include('header/head') %>
+</head>
+
+<body>
+  <script>
+    let userData = {};
+    try {
+      userData = { key: sessionStorage.getItem('account') };
+    } catch (e) {
+      location.href = "/";
+    }
+  </script>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">이더 과외매칭</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/user/MyPage">마이페이지</a>
+          </li>
+
+          <li class="nav-item" id="regStudent">
+            <script>
+              const regStudent = document.getElementById("regStudent");
+              if(userData.key!=null){
+                regStudent.innerHTML = "<a class=nav-link href='/user/registerStudent'>학생등록</a>";
+              }
+              
+            </script>
+          </li>
+
+          <li class="nav-item" id="regTutor">
+            <script>
+              const regTutor = document.getElementById("regTutor");
+              if(userData.key!=null){
+                regTutor.innerHTML = "<a class=nav-link href='/user/registerTutor'>선생님등록</a>";
+              }
+              
+            </script>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/Chatting">채팅상담</a>
+          </li>
+
+          <li class="nav-item" style="color:white;" id="login_li">
+            <script>
+              const login_li = document.getElementById("login_li");
+              login_li.innerHTML = "<a class=nav-link><strong>" + userData.key + "</strong> 님 안녕하세요!</a>";
+            </script>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/login/LogOut">로그아웃</a>
+          </li>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron my-4">
+      <h1 class="display-3">원하는 학생을 찾아보세요!</h1>
+      <p class="lead">학생 이력서를 다운받기 위해서 5Eth가 필요합니다 </p>
+    </header>
+
+    <!-- Page Features -->
+    <div class="row text-center">
+      <% if (selectedStudents !==null){selectedStudents.forEach((selectedStudents, index)=>{ %>
+        <div class="col-lg-3 col-md-6 mb-4">
+          <div class="card h-100">
+            <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+            <div class="card-body">
+              <h4 class="card-title">이름 : <%= selectedStudents[0] %>
+              </h4>
+              <hr>
+              <p class="card-title">성별 : <%= selectedStudents[1] %>
+              </p>
+              <hr>
+              <p class="card-title">나이 : <%= selectedStudents[2] %>
+              </p>
+              <hr>
+              <p class="card-title">거주지 : <%= selectedStudents[3] %>
+              </p>
+              <hr>
+            </div>
+            <div class="card-footer">
+              <button class="btn btn-primary" onclick="getResume('<%= selectedStudents[5] %>')">이력서 다운로드</button>
+            </div>
+          </div>
+        </div>
+        <% })} %>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Korea AeroSpace Univ. NSLab 2021</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+
+
+</body>
+<script>
+  function getResume(hash) {
+    $.ajax({
+      type: "POST",
+      url: "/user/getStudentResume",
+      success: function (result) {
+        alert("학생 이력서 다운중...")
+        location.href = "http://gateway.ipfs.io/ipfs/"+hash 
+      }
+    })
+  }
+</script>
+
+</html>
