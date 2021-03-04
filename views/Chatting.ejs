@@ -2,6 +2,10 @@
 
 <head>
   <%- include('header/head') %>
+  
+  <!-- 10초 주기로 페이지 새로고침 -->
+  <META HTTP-EQUIV="refresh" CONTENT="10"> 
+
 </head>
 
 <body>
@@ -67,30 +71,72 @@
     </div>
   </nav>
 
-  <!-- Page Content -->
+
+
+
   <div class="container">
 
-    <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
-      <h1 class="display-3">선생님과 자유롭게 채팅해보세요</h1>
+      <h1 class="display-3">관리자와 자유롭게 채팅하세요</h1>
       <p class="lead">채팅은 Whisper 프로토콜 기반으로 이루어집니다 </p>
     </header>
+    <div class="row text-center">
+      <div class=" col-md-6 mb-4">
+        <form class="chatting-form" action="/ChattingForm" method="POST">
+          <h3>클라이언트 용</h3>
+          <input class="newitem-form" type="text" name="sendername" placeholder="이름을 입력하세요"> <br>
+          <input class="newitem-form" type="text" name="sendermsg" placeholder="관리자에게 보낼 메세지를 입력하세요"> <br>
+          <h3>관리자용</h3>
+          <input class="newitem-form" type="text" name="adminmsg" placeholder="클라이언트에게 보낼 메세지를 입력하세요"> <br>
+          <input class="btn btn-primary newitem-btn" type="submit" value="전송">
+        </form>
+      </div>
 
 
-    <form class="login-form" action="/sender" method="POST">
-        <input class="newitem-form" type="text" name="sendermsg" placeholder="보낼 메세지를 입력하세요">  <br>
-        <input class="btn btn-primary newitem-btn" type="submit">
-    </form>
 
-    <form class="login-form" action="/receiver" method="POST">
-        <input class="newitem-form" type="text" name="receivermsg" placeholder="보낼 메세지를 입력하세요">  <br>
-        <input class="btn btn-primary newitem-btn" type="submit">
-    </form>
+
+      <div class=" col-md-6 mb-4">
+        <div class="card-chat">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted text-left">Admin</h6>
+            <p class="card-text float-left">궁금한것은 무엇이든 물어보세요!</p>
+          </div>
+        </div>
+        <hr>
+
+        <% 
+          for(var i = 0; i < msgs.length; i++){ 
+            if(msgs[i].name=="Admin"){
+          %>
+        <div class="card-chat">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted text-left">Admin  (<%=msgs[i].time%>)</h6>
+            <p class="card-text float-left"><%= msgs[i].adminmsg %> </p>
+          </div>
+        </div>
+        <hr>
+        <% } else{%>
+
+        <div class="card-chat">
+          <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted text-right" id="insertSession">
+                <%= msgs[i].name %>  (<%=msgs[i].time%>)
+            </h6>
+            <p class="card-text float-right">
+              <%= msgs[i].sendermsg %>
+            </p>
+          </div>
+        </div>
+        <hr>
+        <% } }%>
+
+      </div>
+    </div>
+
+
+    <!-- /.container -->
 
   </div>
-  <!-- /.container -->
-
-
 
 
 

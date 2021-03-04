@@ -99,6 +99,12 @@ body{
     margin-top: 50px;
 }
 
+.chatting-form{
+    float: left;
+    width: 750px;
+    margin-top: 50px;
+}
+
 .login-section{
     position: absolute;
     margin-left: -600px;
@@ -112,6 +118,32 @@ body{
     background-color: white;
     box-shadow: 2px 2px 2px lightgray;
 }
+
+.center {
+    /* this will keep the content center */
+    position: relative;
+    right: 0;
+    left: 0;
+    margin: auto;
+}
+
+.msg-group {
+    position: absolute; 
+    max-width: 720px;
+    height: 92%;
+    overflow-y: scroll;  /*if the content beyond width and height, use the scrollbar*/
+}
+
+.card-chat {
+    padding: 10px 0 10px 0;
+}
+
+.input-group {
+    position: absolute;
+    height: 8%;
+    bottom: 0;
+}
+
 
 .item-name{
     font-size: 24px;
