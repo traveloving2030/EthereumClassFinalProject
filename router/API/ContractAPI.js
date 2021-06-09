@@ -27,7 +27,7 @@ const ethereumTx = {
             const account=request.account.replace(/\"/g,'');
             await contract.methods.registerStudent(request.name, request.gender, request.age, request.residence, request.subject, request.resumeHash).send({
                 from: web3.utils.toChecksumAddress(account),
-                gas: 4000000
+                gas: 3500000
             })
     
             return true
@@ -60,7 +60,7 @@ const ethereumTx = {
             const account=request.account.replace(/\"/g,'');
             await contract.methods.registerTutors(request.name, request.gender, request.age, request.residence, request.subject, request.resumeHash).send({
                 from: web3.utils.toChecksumAddress(account), 
-                gas: 4000000
+                gas: 3500000
             })
     
             return true
@@ -207,7 +207,7 @@ const ethereumTx = {
             const account=request.account.replace(/\"/g,'');
             await contract.methods.getTutorResume().send({
                 from: web3.utils.toChecksumAddress(account),
-                gas: 4000000,
+                gas: 3500000,
                 value: web3.utils.toWei('5', "ether"),
             })
     
