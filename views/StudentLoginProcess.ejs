@@ -20,17 +20,14 @@
     </div>
     <script>
         let account = '<%=stu_ethAccount%>';
-        setTimeout(() => {
-            try {
-                // console.log(account);
-                sessionStorage.setItem("account", JSON.stringify(account));
-                location.href = "/";
+        try {
+            // console.log(account);
+            sessionStorage.setItem("account", JSON.stringify(account));
+            location.href = "/";
 
-            } catch (e) {
-                console.log('error' + e);
-            }
-
-        }, 100)
+        } catch (e) {
+            console.log('error' + e);
+        }
     </script>
 
 </body>

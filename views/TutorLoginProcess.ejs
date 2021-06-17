@@ -13,22 +13,22 @@
 
     <div style="position:absolute;width:400px;height:250px;left:50%;top:50%;margin-left:-200px;margin-top:-125px;">
         <center>
-                <h2>
-                    <font color="white">사용자 로그인 중...</font>
-                </h2>
+            <h2>
+                <font color="white">사용자 로그인 중...</font>
+            </h2>
         </center>
     </div>
     <script>
-        let account='<%=tutor_ethAccount%>';
-        setTimeout(()=>{
-            try{
-                // console.log(account);
-                sessionStorage.setItem("account", JSON.stringify(account));
-                location.href="/";
-            }catch(e){
-                console.log('error' +e);
-            }
-        },100)
+        let account = '<%=tutor_ethAccount%>';
+
+        try {
+            // console.log(account);
+            sessionStorage.setItem("account", JSON.stringify(account));
+            location.href = "/";
+        } catch (e) {
+            console.log('error' + e);
+        }
+
     </script>
 </body>
 
