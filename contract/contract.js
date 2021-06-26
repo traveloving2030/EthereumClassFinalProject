@@ -2,7 +2,7 @@
 
 //access our local copy to contract deployed on rinkeby testnet
 //use your own contract address
-const address = '0xb98C7d9918dbaabf025F965277A842bfb10615a5';
+const address = '0x0fF112BE5222F5Dda4EF6C061Be53169622E71A5';
 //use the ABI from your contract
 const abi = [
 	{

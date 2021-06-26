@@ -3,7 +3,9 @@
 <head>
   <%- include('header/head') %>
 </head>
-
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+crossorigin="anonymous"></script>
 <body>
   <script>
     let userData = {};
@@ -137,6 +139,29 @@
 
 
 </body>
+
+<script>
+	window.addEventListener('load',async function() {
+      if (window.ethereum) {
+        try {
+          // Request account access if needed
+          await ethereum.enable();
+        } catch (error) {
+          console.log(error)
+          // User denied account access...
+        }
+      }
+      // Legacy dapp browsers...
+      else if (window.web3) {
+          window.web3 = new Web3(web3.currentProvider);
+      }
+      // Non-dapp browsers...
+      else {
+          console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+      }
+    });
+</script>
+
 <script>
   if (userData.key != null) {
     $.ajax({

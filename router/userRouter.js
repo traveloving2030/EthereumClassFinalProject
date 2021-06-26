@@ -92,6 +92,7 @@ router.post('/registerStudent', upload.single('resumeHash'), async function (req
     }
 
     const result = await EthereumTx.registerStudent(request)
+
     if (result) {
         res.send('<script type="text/javascript">alert("학생이 등록되었습니다!!"); window.location.href = "/"; </script>');
     } else {
