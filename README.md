@@ -8,3 +8,8 @@
 - console log에 Run Outof Gas 메세지가 나올경우 router/API/ContractAPI에서 gas를 500000 단위로 조절을 해줍니다.
 
 - Chatting 구현은 Whisper 프로토콜로 구현하였으며, 크롬 웹브라우저를 두 개 여신다음 각각 관리자, 클라이언트로 구성하여 확인합니다.
+
+- NodeJS 백앤드에서는 Metamask를 Provider로 쓸 수 없음
+    - 메타마스크의 web3 provider는 window 객체에서 제공됨
+    - 대신, MainPage가 처음 띄워질때, 메타마스크를 연동할수있게끔은 구현하지만, 클릭 이벤트를 통해 Router 처리시 백앤드에서 요청과 응답을 처리하므로 메타마스크를 띄워줄 순 없음
+- 
