@@ -1,15 +1,19 @@
 var Web3 = require('web3');
 var matchingContract = require('../../contract/contract.js');
 var web3 = new Web3('http://localhost:8545');
-var contract = new web3.eth.Contract(matchingContract.abi, matchingContract.address);
+var contract = new web3.eth.Contract(matchingContract.ABI, matchingContract.address);
 
 
 const ethereumTx = {
 
     getAccounts : async() => {
         try {
-            const result = await web3.eth.getAccounts()
-
+            const account = await web3.eth.getAccounts()
+            const result = [];
+            for(var i=0; i<account.length; i++){
+                result.push(web3.utils.toChecksumAddress(account[i]));
+            }
+            
             return result
 
         } catch(error) {
@@ -27,7 +31,7 @@ const ethereumTx = {
             const account=request.account.replace(/\"/g,'');
             await contract.methods.registerStudent(request.name, request.gender, request.age, request.residence, request.subject, request.resumeHash).send({
                 from: web3.utils.toChecksumAddress(account),
-                gas: 3500000
+                gas: 3000000
             })
     
             return true

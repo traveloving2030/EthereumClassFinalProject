@@ -1,7 +1,7 @@
 
 //0xb84b12e953f5bcf01b05f926728e855f2d4a67a9  contract address on rinkeby
 //deployed using remix 
-pragma solidity ^0.5.8;
+pragma solidity ^0.5.0;
 
 contract Contract {
 

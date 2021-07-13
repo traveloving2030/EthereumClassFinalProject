@@ -15,7 +15,6 @@ router.route('/sessionInfo')
     .post(async (req, res) => {
 
         sessionAccount = req.body.sessionAccount
-        console.log("sessionInfo : ", sessionAccount)
     })
 
 //마이페이지 다시 꾸미기
@@ -92,11 +91,10 @@ router.post('/registerStudent', upload.single('resumeHash'), async function (req
     }
 
     const result = await EthereumTx.registerStudent(request)
-
-    if (result) {
-        res.send('<script type="text/javascript">alert("학생이 등록되었습니다!!"); window.location.href = "/"; </script>');
+    if (!result) {
+        res.send('<script type="text/javascript">alert("학생등록 오류입니다!!"); window.location.href = "/"; </script>');
     } else {
-        res.send('<script type="text/javascript">alert("학생등록 오류입니다!!"); window.location.href = "/user/registerStudent";</script>');
+        res.send('<script type="text/javascript">alert("학생이 등록되었습니다!!"); window.location.href = "/user/registerStudent";</script>');
     }
 })
 
@@ -134,7 +132,7 @@ router.route('/ShowStudent/selected')
 
 
         const total = await EthereumTx.getNumOfStudents();
-
+        console.log("총 학생수는", total)
         const totalArray = await getUser.getTotalStudentsArray(total);
 
         let request = {
@@ -145,7 +143,7 @@ router.route('/ShowStudent/selected')
 
         }
         const selectedStudents = await getUser.getSelectedStudentsArray(request)
-
+        console.log("선택된 닝겐은", totalArray)
         res.render('ShowStudent', { title: 'ShowStudent' ,selectedStudents: selectedStudents})
     })
 
@@ -160,7 +158,7 @@ router.post('/registerTutor', upload.single('resumeHash'), async function (req, 
     const ipfsHash = await ipfs.add({
         path: newpath
     })
-    console.log("tutor세션", sessionAccount)
+
 
     let request = {
         account: sessionAccount,

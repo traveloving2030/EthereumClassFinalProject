@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const EthereumTx = require('./API/ContractAPI')
+var Web3 = require('web3');
+var web3 = new Web3('http://localhost:8545');
 
 router.route('/StudentLogin')
     .get(async (req, res) => {
@@ -10,9 +12,9 @@ router.route('/StudentLogin/loginProcess')
     .post(async (req, res) => {
 
         const accounts = await EthereumTx.getAccounts()
-
+        console.log("계정은", accounts)
         for (var i = 0; i < accounts.length; i++) {
-            if (req.body.stu_ethAccount == accounts[i]) {
+            if (web3.utils.toChecksumAddress(req.body.stu_ethAccount) == accounts[i]) {
                 res.render('StudentLoginProcess', { title: "login....", stu_ethAccount: req.body.stu_ethAccount });
             }
         }
