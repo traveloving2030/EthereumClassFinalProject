@@ -1,9 +1,24 @@
 # EthereumClassFinalProject
 
+## 실행순서
+
 - Geth 버전은 1.8 버전으로 합니다.
     - geth --networkid 123 --datadir test --rpc --rpcport 8545 --rpccorsdomain "*" --rpcapi "admin, db, eth, debug, miner, net, shh, txpool, personal, web3" console --shh
 
+- truffle을 이용하여 스마트 컨트랙트 컴파일 및 배포합니다.
+    - cd EthereumClassFinalProject\truffle> truffle.cmd compile
+    - cd EthereumClassFinalProject\truffle> truffle.cmd migrate
 
+- 서버 구동
+    - node server.js
+
+## 실행방법
+
+- Geth 내 등록된 계좌로 학생, 선생님 로그인
+- 선생님, 학생 등록 또는 이력서 다운로드시 Geth 마이닝 필수
+- Whisper 채팅 페이지는 15초마다 새로고침 되도록 설정하였습니다.
+
+## 유의사항
 
 - console log에 Run Outof Gas 메세지가 나올경우 router/API/ContractAPI에서 gas를 500000 단위로 조절을 해줍니다.
 

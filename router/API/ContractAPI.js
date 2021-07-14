@@ -1,5 +1,5 @@
 var Web3 = require('web3');
-const CA = "0xbF5E04804425162099e945EB36dF07A7096e034B";
+const CA = require('../../truffle/build/contracts/Contract').networks["123"].address;
 const ABI = require('../../truffle/build/contracts/Contract').abi
 var web3 = new Web3('http://localhost:8545');
 var contract = new web3.eth.Contract(ABI, CA);
@@ -30,12 +30,12 @@ const ethereumTx = {
     registerStudent : async(request) => {
         try {
             const account=request.account.replace(/\"/g,'');
-            await contract.methods.registerStudent(request.name, request.gender, request.age, request.residence, request.subject, request.resumeHash).send({
+            const result = await contract.methods.registerStudent(request.name, request.gender, request.age, request.residence, request.subject, request.resumeHash).send({
                 from: web3.utils.toChecksumAddress(account),
                 gas: 3000000
             })
     
-            return true
+            return result;
 
         } catch(error) {
             console.log(error)
