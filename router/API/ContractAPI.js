@@ -1,7 +1,8 @@
 var Web3 = require('web3');
-var matchingContract = require('../../contract/contract.js');
+const CA = "0xbF5E04804425162099e945EB36dF07A7096e034B";
+const ABI = require('../../truffle/build/contracts/Contract').abi
 var web3 = new Web3('http://localhost:8545');
-var contract = new web3.eth.Contract(matchingContract.ABI, matchingContract.address);
+var contract = new web3.eth.Contract(ABI, CA);
 
 
 const ethereumTx = {

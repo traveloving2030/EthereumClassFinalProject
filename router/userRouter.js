@@ -134,7 +134,7 @@ router.route('/ShowStudent/selected')
         const total = await EthereumTx.getNumOfStudents();
         console.log("총 학생수는", total)
         const totalArray = await getUser.getTotalStudentsArray(total);
-
+        console.log("총 학생정보는", totalArray)
         let request = {
             totalArray: totalArray,
             gender: req.body.gender,
@@ -143,7 +143,7 @@ router.route('/ShowStudent/selected')
 
         }
         const selectedStudents = await getUser.getSelectedStudentsArray(request)
-        console.log("선택된 닝겐은", totalArray)
+
         res.render('ShowStudent', { title: 'ShowStudent' ,selectedStudents: selectedStudents})
     })
 
