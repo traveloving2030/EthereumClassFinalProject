@@ -3,7 +3,7 @@
 ## 실행순서
 
 - Genesis.json 파일은 다음과 같이 설정합니다. (zip 파일 다운로드)
-    - geth --datadir test init genesis.jsonn
+    - geth --datadir test init genesis.json
 
 ```json
 {
