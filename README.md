@@ -2,7 +2,7 @@
 
 ## 실행순서
 
-- Genesis.json 파일은 다음과 같이 설정합니다.
+- Genesis.json 파일은 다음과 같이 설정합니다. (zip 파일 다운로드)
 
 ```json
 {
@@ -30,7 +30,7 @@
 }
 ```
 
-- Geth 버전은 1.8.23-stable 버전으로 합니다.
+- Geth 버전은 1.8.23-stable 버전으로 합니다. (zip 파일 다운로드)
     - geth --networkid 123 --datadir test --rpc --rpcport 8545 --rpccorsdomain "*" --rpcapi "admin, db, eth, debug, miner, net, shh, txpool, personal, web3" console --shh
 
 - truffle을 이용하여 스마트 컨트랙트 컴파일 및 배포합니다.
