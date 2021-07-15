@@ -4,7 +4,6 @@ const ABI = require('../../truffle/build/contracts/Contract').abi
 var web3 = new Web3('http://localhost:8545');
 var contract = new web3.eth.Contract(ABI, CA);
 
-
 const ethereumTx = {
 
     getAccounts : async() => {
