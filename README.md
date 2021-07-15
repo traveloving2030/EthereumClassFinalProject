@@ -2,9 +2,37 @@
 
 ## 실행순서
 
-- Geth 버전은 1.8 버전으로 합니다.
+- Genesis.json 파일은 다음과 같이 설정합니다.
+
+```json
+{
+  "config": {
+    "chainId": 1234,
+    "homesteadBlock": 1,
+    "eip150Block": 2,
+    "eip155Block": 3,
+    "eip158Block": 3,
+    "byzantiumBlock": 4,
+    "constantinopleBlock": 5,
+    "ethash": {}
+  },
+  "nonce": "0x00",
+  "timestamp": "0x00",
+  "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "gasLimit": "0x47b760",
+  "difficulty": "0x50000",
+  "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "coinbase": "0x0000000000000000000000000000000000000000",
+  "alloc": {},
+  "number": "0x0",
+  "gasUsed": "0x0",
+  "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+}
+```
+
+- Geth 버전은 1.8.23-stable 버전으로 합니다.
     - geth --networkid 123 --datadir test --rpc --rpcport 8545 --rpccorsdomain "*" --rpcapi "admin, db, eth, debug, miner, net, shh, txpool, personal, web3" console --shh
-    - 계정 lock 풀어줍니다 (personal.unlockAccount(eth.accounts[0],"123",0))
+
 - truffle을 이용하여 스마트 컨트랙트 컴파일 및 배포합니다.
     - cd EthereumClassFinalProject\truffle> truffle.cmd compile
     - cd EthereumClassFinalProject\truffle> truffle.cmd migrate
@@ -26,7 +54,7 @@
 
 - NodeJS 백앤드에서는 Metamask를 Provider로 쓸 수 없음
     - 메타마스크의 web3 provider는 브라우저 객체(widnow)에서 제공됨
-    - 대신, MainPage가 처음 띄워질때, 메타마스크를 연동할수있게끔은 구현하지만, 클릭 이벤트를 통해 Router 처리시 백앤드에서 요청과 응답을 처리하므로 메타마스크를 띄워줄 순 없음
+    - 대신, MainPage가 처음 띄워질때, 메타마스크를 연동할수있게끔은 구현을 했지만, 클릭 이벤트를 통해 Router 처리시 백앤드에서 요청과 응답을 처리하므로 메타마스크를 띄워줄 순 없음
     - 메타마스크를 띄우기 위해서는 NodeJS 프론트앤드 프레임워크 (e.g React..)에서 작동시키거나, 프론트앤드 개발환경에서 제공되는 개발용 서버(webpack-dev-server) 같은 것을 이용해야합니다
 
 - Truffle로 컨트랙트 컴파일, 배포시 
