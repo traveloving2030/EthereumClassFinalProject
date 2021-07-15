@@ -4,7 +4,7 @@
 
 - Geth 버전은 1.8 버전으로 합니다.
     - geth --networkid 123 --datadir test --rpc --rpcport 8545 --rpccorsdomain "*" --rpcapi "admin, db, eth, debug, miner, net, shh, txpool, personal, web3" console --shh
-
+    - 계정 lock 풀어줍니다 (personal.unlockAccount(eth.accounts[0],"123",0))
 - truffle을 이용하여 스마트 컨트랙트 컴파일 및 배포합니다.
     - cd EthereumClassFinalProject\truffle> truffle.cmd compile
     - cd EthereumClassFinalProject\truffle> truffle.cmd migrate
