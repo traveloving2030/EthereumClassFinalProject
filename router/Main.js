@@ -21,7 +21,7 @@ router.route('/')
 
 
 
-//채팅페이지 꾸미기
+
 router.route('/Chatting')
     .get(async (req, res) => {
         res.render('Chatting', { title: 'Chatting', msgs: msgs });
