@@ -23,8 +23,7 @@ router.route('/MyPage')
         let request = {
             account: sessionAccount,
         }
-        const result = await EthereumTx.getStudentInfoByAddress(request); //다시!!
-
+        const result = await EthereumTx.getStudentInfoByAddress(request);
         res.render('MyPage', { title: 'MyPage', studentInfo: result });
     })
 
