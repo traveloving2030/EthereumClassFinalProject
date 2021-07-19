@@ -18,22 +18,14 @@ const ipfs_method = {
     
         const result = await ipfs.add(data)
 
-        await fs.unlink(file.path, (err) => {
+/*         await fs.unlink(file.path, (err) => {
             if (err) return console.log(err)
-        })	
+        })	 */
 
         return result[0].hash
-/*         return {
-            fileName : file.name,
-            filePath : result[0].hash
-        } */
-    },
-    
-    get : async(file) => {
-        const chunk = await ipfs.get(file.cid)
 
-        await fs.writeFileSync(file.savePath, chunk[0].content)
     }
+    
 }
 
 module.exports = ipfs_method
