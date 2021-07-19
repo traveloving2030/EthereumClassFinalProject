@@ -17,7 +17,7 @@ router.route('/sessionInfo')
         sessionAccount = req.body.sessionAccount
     })
 
-//마이페이지 다시 꾸미기
+
 router.route('/MyPage')
     .get(async (req, res) => {
         let request = {
