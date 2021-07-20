@@ -30,35 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const apiRouter = require('./router/apiRouter')
 
-/* // Router
-var MainPage = require('./router/MainPage');
-var StudentLogin = require('./router/StudentLogin');
-var TutorLogin = require('./router/TutorLogin');
-var Logout = require('./router/Logout');
-// var FindStudent = require('./router/FindStudent');
-var FindTutor = require('./router/FindTutor');
 
-// var registerStudent = require('./router/registerStudent');
-// var registerTutor = require('./router/registerTutor');
-// var ShowStudent = require('./router/ShowStudent');
-var ShowTutor = require('./router/ShowTutor');
-
-
-
-app.use('/', MainPage);
-app.use('/MainPage', MainPage);
-app.use('/StudentLogin', StudentLogin);
-app.use('/StudentLoginProcess', StudentLogin);
-app.use('/TutorLogin', TutorLogin);
-app.use('/TutorLoginProcess', TutorLogin);
-app.use('/Logout', Logout);
-// app.use('/FindStudent', FindStudent);
-app.use('/FindTutor', FindTutor);
-
-// app.use('/registerStudent', registerStudent);
-// app.use('/registerTutor', registerTutor);
-// app.use('/ShowStudent', ShowStudent);
-app.use('/ShowTutor', ShowTutor); */
 
 app.use('/', apiRouter)
 
