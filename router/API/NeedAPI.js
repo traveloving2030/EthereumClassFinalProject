@@ -39,9 +39,10 @@ const getUser = {
         }
     },
 
+
     getTotalStudentsArray : async(totalStudentNum) => {
         try {
-            var total = new Array(); //전체 선생님들 정보를 저장하기 위한 임시 배열
+            var total = new Array(); //전체 학생들 정보를 저장하기 위한 임시 배열
             for (var i = 0; i < totalStudentNum; i++) {
                 const studentInfo = await EthereumTx.getStudentInfoByIndex(i);
                 total.push(studentInfo);

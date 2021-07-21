@@ -134,6 +134,8 @@ router.route('/ShowStudent/selected')
         console.log("총 학생수는", total)
         const totalArray = await getUser.getTotalStudentsArray(total);
         console.log("총 학생정보는", totalArray)
+
+        
         let request = {
             totalArray: totalArray,
             gender: req.body.gender,
@@ -183,7 +185,9 @@ router.route('/getStudentResume')
             account: sessionAccount
         }
         const result=await EthereumTx.getStudentResume(request)
-        res.send({result:result})
+        res.send({
+            result:result
+        })
 
     })
 module.exports = router;

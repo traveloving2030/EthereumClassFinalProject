@@ -99,8 +99,10 @@ contract Contract {
     }
 
     function getStudentResume() public payable {
-      TutorValidCheck(msg.sender);
-      owner.transfer(msg.value);
+      if(TutorValidCheck(msg.sender)){
+        owner.transfer(msg.value);
+      }
+      
  
     }
 
