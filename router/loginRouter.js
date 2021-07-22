@@ -38,16 +38,20 @@ router.route('/TutorLogin/loginProcess')
 
         const accounts = await EthereumTx.getAccounts()
 
-        for (var i = 0; i < accounts.length; i++) {
+        var i;
+        for (i = 0; i < accounts.length; i++) {
             if (req.body.tutor_ethAccount == accounts[i]) {
                 res.render('TutorLoginProcess', { title: "login....", tutor_ethAccount: req.body.tutor_ethAccount });
             }
         }
-        try {
-            res.send('<script type="text/javascript">alert("로그인 실패. 이더리움 주소를 확인하세요!!"); window.location.href = "/login/TutorLogin"; </script>');
-        } catch (e) {
-            console.log(e)
+        if(i==accounts.length){
+            try {
+                res.send('<script type="text/javascript">alert("로그인 실패. 이더리움 주소를 확인하세요!!"); window.location.href = "/login/TutorLogin"; </script>');
+            } catch (e) {
+                console.log(e)
+            }
         }
+
 
     })
 
